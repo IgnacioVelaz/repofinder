@@ -1,3 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --clr-bg: #17181c;
+  --clr-bg-dark: #050505;
+  --clr-bg-muted: #2f2f37;
+
+  --clr-text: #feffff;
+  --clr-text-muted: #c4c5c9;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  background-color: var(--clr-bg);
+}
