@@ -1,7 +1,8 @@
 import './App.css';
+import { RouterPaths } from './routes';
 
 function App() {
-  return <h1 className="text-clr-text flex flex-col">Hola</h1>;
+  return <RouterPaths />;
 }
 
 export default App;

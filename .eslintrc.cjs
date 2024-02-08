@@ -26,4 +26,19 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  overrides: [
+    {
+      files: ["index.ts"],
+      rules: {
+        "import/prefer-default-export": "off",
+      },
+    },
+  ],
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
+  },
 };
