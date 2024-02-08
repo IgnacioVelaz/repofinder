@@ -4,13 +4,21 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "airbnb",
-    "airbnb-typescript",
     "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
     "prettier",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
-  plugins: ["react-refresh", "react", "prettier"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["react-refresh", "react", "prettier", "@typescript-eslint"],
   rules: {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { extensions: [".jsx", ".tsx"] }],
+    "no-console": "warn",
+    "import/extensions": "off",
+    "react/function-component-definition": "off",
+    "prefer-const": ["error", { destructuring: "all" }],
+    "prefer-arrow-callback": ["error", { allowNamedFunctions: false }],
     "max-len": ["error", 140],
     quotes: [2, "single", { avoidEscape: true }],
     "react-refresh/only-export-components": [
