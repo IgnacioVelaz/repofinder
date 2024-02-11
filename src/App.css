@@ -15,4 +15,5 @@
 body {
   font-family: "Noto Sans", sans-serif;
   background-color: var(--clr-bg);
+  color: var(--clr-text);
 }
