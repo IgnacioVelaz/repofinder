@@ -1,19 +1,13 @@
 import { useQuery } from '@apollo/client';
 import { FC, useEffect } from 'react';
 import { GET_USERS } from '../../services/githubAPI';
-import UserInterface from '../../interfaces/UserInterface';
-import { UserItem } from '../user-item';
 import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useLoadMore from '../../hooks/useLoadMore';
+import UsersList from './UsersList';
 
 type props = {
   searchQuery: string;
-};
-
-type UserType = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  node: UserInterface;
 };
 
 const UsersListWithData: FC<props> = ({ searchQuery }) => {
@@ -47,18 +41,7 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
 
   return (
     <>
-      <ul className="bg-clr-bg">
-        {users.map(
-          ({ node }: UserType, index: number) =>
-            node.login && (
-              <UserItem
-                user={node}
-                key={node.login}
-                reference={index === users.length - 1 ? lastItem : null}
-              />
-            ),
-        )}
-      </ul>
+      <UsersList users={users} lastItem={lastItem} />
       {isLoadingMore && <LoadingSpinner />}
     </>
   );
