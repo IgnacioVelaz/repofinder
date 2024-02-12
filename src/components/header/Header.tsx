@@ -1,10 +1,8 @@
-import { IoArrowBack } from 'react-icons/io5';
-import { SearchInput } from '../search-input';
+import { FC, PropsWithChildren } from 'react';
 
-const Header = () => (
-    <header className="flex h-16 items-center justify-between bg-blue-500 px-4">
-      <IoArrowBack size={20} className="text-clr-text" />
-      <SearchInput />
-    </header>
-  );
+const Header: FC<PropsWithChildren> = ({ children }) => (
+  <header className="relative flex h-16 items-center gap-4 bg-clr-bg px-4">
+    {children}
+  </header>
+);
 export default Header;

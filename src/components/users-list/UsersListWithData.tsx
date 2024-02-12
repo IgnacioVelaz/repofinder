@@ -76,7 +76,7 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
 
   return (
     <>
-      <ul>
+      <ul className="bg-clr-bg">
         {users.map(
           ({ node }: UserType, index: number) =>
             node.login && (
