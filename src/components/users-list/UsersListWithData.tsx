@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { GET_USERS } from '../../services/githubAPI';
 import UserInterface from '../../interfaces/UserInterface';
 import { UserItem } from '../user-item';
 import LoadingSpinner from '../loading-spinner/LoadingSpinner';
+import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 
 type props = {
   searchQuery: string;
@@ -16,19 +17,11 @@ type UserType = {
 
 const UsersListWithData: FC<props> = ({ searchQuery }) => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const lastItem = useRef<HTMLLIElement>(null);
-  const [lastItemIsVisible, setLastItemIsVisible] = useState<boolean>();
-
-  const observer = useRef(
-    new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      setLastItemIsVisible(entry.isIntersecting);
-    }),
-  );
 
   const { loading, error, data, fetchMore } = useQuery(GET_USERS, {
     variables: { searchQuery, first: 10 },
   });
+  const [lastItem, lastItemIsVisible, observer] = useIntersectionObserver();
 
   useEffect(() => {
     if (!loading && data && data.search.edges.length > 0 && lastItem.current) {
