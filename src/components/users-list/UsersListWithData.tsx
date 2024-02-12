@@ -3,6 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { GET_USERS } from '../../services/githubAPI';
 import UserInterface from '../../interfaces/UserInterface';
 import { UserItem } from '../user-item';
+import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 
 type props = {
   searchQuery: string;
@@ -68,7 +69,7 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
     }
   }, [lastItemIsVisible]);
 
-  if (loading && !isLoadingMore) return <p>Loading...</p>;
+  if (loading && !isLoadingMore) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
 
   const users = data.search.edges;
@@ -87,7 +88,7 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
             ),
         )}
       </ul>
-      {isLoadingMore && <p>Loading...</p>}
+      {isLoadingMore && <LoadingSpinner />}
     </>
   );
 };
