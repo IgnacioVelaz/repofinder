@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import Header from '../../components/header/Header';
-import { UsersList } from '../../components/users-list';
+import UsersListWithData from '../../components/users-list/UsersListWithData';
 
 const HomePage = () => {
   const [searchParams] = useSearchParams();
@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      {userSearchParam && <UsersList searchQuery={userSearchParam} />}
+      {userSearchParam && <UsersListWithData searchQuery={userSearchParam} />}
     </>
   );
 };
