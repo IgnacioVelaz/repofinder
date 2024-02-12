@@ -27,7 +27,7 @@ const HomePage = () => {
             <h2 className="text-3xl font-bold">Find people.</h2>
             <p>
               Find people in RepoFinder. <br /> Repositories, organizations and
-              issues coming soon
+              issues coming soon.
             </p>
           </div>
         )}
