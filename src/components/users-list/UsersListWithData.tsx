@@ -39,6 +39,8 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
 
   const users = data.search.edges;
 
+  console.log(users);
+
   return (
     <>
       <UsersList users={users} lastItem={lastItem} />
