@@ -12,7 +12,7 @@ const RepoItem: FC<Props> = ({ repo, reference }) => {
   const { url, name, description, primaryLanguage, stargazerCount } = repo;
 
   return (
-    <Link to={url}>
+    <Link to={url} target="_blank">
       <li
         className="flex flex-col gap-2 border-b border-clr-bg-muted py-4"
         ref={reference}

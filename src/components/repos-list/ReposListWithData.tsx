@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { RxCaretDown } from 'react-icons/rx';
 import { GET_REPOS } from '../../services';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useLoadMore from '../../hooks/useLoadMore';
@@ -11,6 +10,7 @@ import RepoEdgeInterface from '../../interfaces/RepoEdgeInterface';
 import getUserLanguages from '../../utils/getUserLanguages';
 import { Modal } from '../modal';
 import { LanguagesList } from '../languages-list';
+import { LanguagesButton } from '../languages-button';
 
 type Props = {
   userLogin: string;
@@ -24,7 +24,6 @@ const ReposListWithData: FC<Props> = ({ userLogin }) => {
   const [userLanguages, setUserLanguages] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
-
   const { loading, error, data, fetchMore } = useQuery(GET_REPOS, {
     variables: { searchQuery, first: 15 },
   });
@@ -83,24 +82,20 @@ const ReposListWithData: FC<Props> = ({ userLogin }) => {
 
   return (
     <>
-      <button
-        className="mb-6 flex items-center gap-2 rounded-full bg-clr-bg-muted px-4 py-2 text-sm"
-        type="button"
-        onClick={openModal}
-      >
-        {selectedLanguage.length > 0 ? selectedLanguage : 'Language'}
-        <RxCaretDown size={20} />
-      </button>
+      <LanguagesButton
+        openModal={openModal}
+        selectedLanguage={selectedLanguage}
+        userLanguages={userLanguages}
+        allReposLoaded={allReposLoaded}
+      />
       <ReposList repos={languageFilteredRepos} lastItem={lastItem} />
       {isLoadingMore && <LoadingSpinner />}
       {isModalVisible && (
         <Modal title="Select language" closeModal={closeModal}>
-          {userLanguages && (
-            <LanguagesList
-              languages={userLanguages}
-              selectLanguage={selectLanguage}
-            />
-          )}
+          <LanguagesList
+            languages={userLanguages}
+            selectLanguage={selectLanguage}
+          />
         </Modal>
       )}
     </>
