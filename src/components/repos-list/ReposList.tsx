@@ -1,4 +1,4 @@
-import { FC, RefObject } from 'react';
+import { FC } from 'react';
 import { RepoItem } from '../repo-item';
 import { RepoInterface } from '../../interfaces/RepoInterface';
 
@@ -9,22 +9,17 @@ type RepoType = {
 
 type Props = {
   repos: RepoType[];
-  lastItem: RefObject<HTMLLIElement>;
 };
 
-const ReposList: FC<Props> = ({ repos, lastItem }) => (
+const ReposList: FC<Props> = ({ repos }) => {
+  console.log('REPOS', repos);
+
+  return (
     <ul>
       {repos.map(
-        ({ node }: RepoType, index: number) =>
-          node && (
-            <RepoItem
-              repo={node}
-              key={node.url}
-              reference={index === repos.length - 1 ? lastItem : null}
-            />
-          ),
+        ({ node }: RepoType) => node && <RepoItem repo={node} key={node.url} />,
       )}
     </ul>
   );
-
+};
 export default ReposList;

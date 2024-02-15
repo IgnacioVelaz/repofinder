@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client';
 import { FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { GET_REPOS } from '../../services';
-import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useLoadMore from '../../hooks/useLoadMore';
 import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 import ReposList from './ReposList';
@@ -27,7 +26,6 @@ const ReposListWithData: FC<Props> = ({ userLogin }) => {
   const { loading, error, data, fetchMore } = useQuery(GET_REPOS, {
     variables: { searchQuery, first: 15 },
   });
-  const [lastItem] = useIntersectionObserver();
   const [isLoadingMore, loadMore] = useLoadMore(data, fetchMore);
 
   const closeModal = () => setIsModalVisible(false);
@@ -88,7 +86,7 @@ const ReposListWithData: FC<Props> = ({ userLogin }) => {
         userLanguages={userLanguages}
         allReposLoaded={allReposLoaded}
       />
-      <ReposList repos={languageFilteredRepos} lastItem={lastItem} />
+      <ReposList repos={languageFilteredRepos} />
       {isLoadingMore && <LoadingSpinner />}
       {isModalVisible && (
         <Modal title="Select language" closeModal={closeModal}>
