@@ -10,7 +10,6 @@ type Props = {
 
 const RepoItem: FC<Props> = ({ repo, reference }) => {
   const { url, name, description, primaryLanguage, stargazerCount } = repo;
-  const { color: languageColor, name: languageName } = primaryLanguage;
 
   return (
     <Link to={url}>
@@ -23,11 +22,15 @@ const RepoItem: FC<Props> = ({ repo, reference }) => {
         <div className="flex items-center gap-2 text-clr-text-muted">
           <FaStar className="text-yellow-500" />
           <p>{stargazerCount}</p>
-          <div
-            className="h-4 w-4 rounded-full"
-            style={{ backgroundColor: languageColor }}
-          />
-          <p>{languageName}</p>
+          {primaryLanguage && (
+            <>
+              <div
+                className="h-4 w-4 rounded-full"
+                style={{ backgroundColor: primaryLanguage.color }}
+              />
+              <p>{primaryLanguage.name}</p>
+            </>
+          )}
         </div>
       </li>
     </Link>

@@ -5,6 +5,7 @@ import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useLoadMore from '../../hooks/useLoadMore';
 import UsersList from './UsersList';
+import UserEdgeInterface from '../../interfaces/UserEdgeInterface';
 
 type props = {
   searchQuery: string;
@@ -39,9 +40,14 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
 
   const users = data.search.edges;
 
+  const cleanedUpUsers = users.filter(
+    // eslint-disable-next-line no-underscore-dangle
+    ({ node }: UserEdgeInterface) => node.__typename === 'User',
+  );
+
   return (
     <>
-      <UsersList users={users} lastItem={lastItem} />
+      <UsersList users={cleanedUpUsers} lastItem={lastItem} />
       {isLoadingMore && <LoadingSpinner />}
     </>
   );

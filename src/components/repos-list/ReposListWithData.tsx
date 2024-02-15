@@ -1,53 +1,51 @@
 import { useQuery } from '@apollo/client';
 import { FC, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { GET_REPOS } from '../../services';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useLoadMore from '../../hooks/useLoadMore';
 import LoadingSpinner from '../loading-spinner/LoadingSpinner';
 import ReposList from './ReposList';
+import RepoEdgeInterface from '../../interfaces/RepoEdgeInterface';
 
 type Props = {
   userLogin: string;
 };
 
 const ReposListWithData: FC<Props> = ({ userLogin }) => {
-  const searchInputValue = '';
-  const language = 'javascript';
-  const searchQuery = `${searchInputValue} user:${userLogin} language:${language} sort:updated-desc`;
+  const [searchParam] = useSearchParams();
+  const repoSearchParam = searchParam.get('q') || '';
+  const searchQuery = `user:${userLogin} sort:updated-desc`;
 
   const { loading, error, data, fetchMore } = useQuery(GET_REPOS, {
-    variables: { searchQuery, first: 10 },
+    variables: { searchQuery, first: 15 },
   });
-
-  const [lastItem, lastItemIsVisible, observer] = useIntersectionObserver();
+  const [lastItem] = useIntersectionObserver();
   const [isLoadingMore, loadMore] = useLoadMore(data, fetchMore);
 
   useEffect(() => {
-    if (!loading && data && data.search.edges.length > 0 && lastItem.current) {
-      observer.current.observe(lastItem.current);
-    }
-  }, [data]);
-
-  useEffect(() => {
     if (
-      lastItem.current &&
-      lastItemIsVisible &&
+      !loading &&
+      data &&
+      data.search.edges.length > 0 &&
       data.search.pageInfo.hasNextPage
     ) {
-      observer.current.unobserve(lastItem.current);
-
       loadMore();
     }
-  }, [lastItemIsVisible]);
+  }, [data]);
 
   if (loading && !isLoadingMore) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
 
   const repos = data.search.edges;
 
+  const filteredRepos = repos.filter(({ node }: RepoEdgeInterface) =>
+    node.name.includes(repoSearchParam),
+  );
+
   return (
     <>
-      <ReposList repos={repos} lastItem={lastItem} />
+      <ReposList repos={filteredRepos} lastItem={lastItem} />
       {isLoadingMore && <LoadingSpinner />}
     </>
   );
