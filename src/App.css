@@ -10,6 +10,8 @@
 
   --clr-text: #feffff;
   --clr-text-muted: #c4c5c9;
+
+  --clr-accent: #2f81f7;
 }
 
 body {

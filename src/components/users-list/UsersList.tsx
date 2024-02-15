@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, RefObject } from 'react';
 import UserInterface from '../../interfaces/UserInterface';
 import { UserItem } from '../user-item';
 
@@ -9,22 +9,22 @@ type UserType = {
 
 type Props = {
   users: UserType[];
-  lastItem: React.RefObject<HTMLLIElement>;
+  lastItem: RefObject<HTMLLIElement>;
 };
 
 const UsersList: FC<Props> = ({ users, lastItem }) => (
-    <ul className="bg-clr-bg">
-      {users.map(
-        ({ node }: UserType, index: number) =>
-          node.login && (
-            <UserItem
-              user={node}
-              key={node.login}
-              reference={index === users.length - 1 ? lastItem : null}
-            />
-          ),
-      )}
-    </ul>
-  );
+  <ul className="bg-clr-bg">
+    {users.map(
+      ({ node }: UserType, index: number) =>
+        node.login && (
+          <UserItem
+            user={node}
+            key={node.login}
+            reference={index === users.length - 1 ? lastItem : null}
+          />
+        ),
+    )}
+  </ul>
+);
 
 export default UsersList;

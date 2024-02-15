@@ -1,19 +1,24 @@
 import { useQuery } from '@apollo/client';
 import { FC, useEffect } from 'react';
-import { GET_USERS } from '../../services/githubAPI';
-import LoadingSpinner from '../loading-spinner/LoadingSpinner';
+import { GET_REPOS } from '../../services';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useLoadMore from '../../hooks/useLoadMore';
-import UsersList from './UsersList';
+import LoadingSpinner from '../loading-spinner/LoadingSpinner';
+import ReposList from './ReposList';
 
-type props = {
-  searchQuery: string;
+type Props = {
+  userLogin: string;
 };
 
-const UsersListWithData: FC<props> = ({ searchQuery }) => {
-  const { loading, error, data, fetchMore } = useQuery(GET_USERS, {
+const ReposListWithData: FC<Props> = ({ userLogin }) => {
+  const searchInputValue = '';
+  const language = 'javascript';
+  const searchQuery = `${searchInputValue} user:${userLogin} language:${language} sort:updated-desc`;
+
+  const { loading, error, data, fetchMore } = useQuery(GET_REPOS, {
     variables: { searchQuery, first: 10 },
   });
+
   const [lastItem, lastItemIsVisible, observer] = useIntersectionObserver();
   const [isLoadingMore, loadMore] = useLoadMore(data, fetchMore);
 
@@ -30,6 +35,7 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
       data.search.pageInfo.hasNextPage
     ) {
       observer.current.unobserve(lastItem.current);
+
       loadMore();
     }
   }, [lastItemIsVisible]);
@@ -37,14 +43,13 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
   if (loading && !isLoadingMore) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
 
-  const users = data.search.edges;
+  const repos = data.search.edges;
 
   return (
     <>
-      <UsersList users={users} lastItem={lastItem} />
+      <ReposList repos={repos} lastItem={lastItem} />
       {isLoadingMore && <LoadingSpinner />}
     </>
   );
 };
-
-export default UsersListWithData;
+export default ReposListWithData;

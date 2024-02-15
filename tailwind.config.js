@@ -9,6 +9,7 @@ export default {
         'clr-bg-muted': 'var(--clr-bg-muted)',
         'clr-text': 'var(--clr-text)',
         'clr-text-muted': 'var(--clr-text-muted)',
+        'clr-accent': 'var(--clr-accent)',
       },
     },
   },
