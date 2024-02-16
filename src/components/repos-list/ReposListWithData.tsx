@@ -76,7 +76,7 @@ const ReposListWithData: FC<Props> = ({ userLogin }) => {
     );
 
   const queryFilteredRepos = repos.filter(({ node }: RepoEdgeInterface) =>
-    node.name.includes(repoSearchParam),
+    node.name.includes(repoSearchParam.toLowerCase()),
   );
 
   const languageFilteredRepos =
