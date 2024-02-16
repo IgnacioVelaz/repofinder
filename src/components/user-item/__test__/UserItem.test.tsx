@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { createRef } from 'react';
 import { render, screen } from '@testing-library/react';
 import UserItem from '../UserItem';
@@ -24,9 +24,9 @@ describe('UserItem component', () => {
   beforeEach(() => {
     const reference = createRef<HTMLLIElement>();
     render(
-      <Router>
+      <BrowserRouter>
         <UserItem user={mockUser} reference={reference} />
-      </Router>,
+      </BrowserRouter>,
     );
   });
 
@@ -50,10 +50,8 @@ describe('UserItem component', () => {
       const bio = screen.getByText(mockUser.bio);
       expect(bio).toBeInTheDocument();
     });
-  });
 
-  describe('behavior', () => {
-    it('should redirect to the right user page', () => {
+    it('should render a link with the right href', () => {
       const link = screen.getByRole('link');
       expect(link).toHaveAttribute('href', `/user/${mockUser.login}`);
     });
