@@ -18,7 +18,7 @@ const SearchBox = () => {
       <SearchInput
         query={query}
         onChange={onChange}
-        placeholder="Find in RepoFinder"
+        placeholder="Find in RepoFindr"
       />
       {query && !isSearching && (
         <SearchButton query={query} setSearchParams={setSearchParams} />

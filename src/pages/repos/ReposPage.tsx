@@ -29,30 +29,36 @@ const ReposPage = () => {
   return (
     <>
       <Header>
-        <BackArrow />
-        {repoSearchParam === null && (
-          <>
-            <div>
-              <p className="text-sm text-clr-text-muted">{userLogin}</p>
-              <h2 className="text-xl font-bold">Repositories</h2>
-            </div>
-            <button
-              className="ml-auto p-2"
-              onClick={enableSearch}
-              aria-label="Search"
-              type="button"
-            >
-              <IoSearchOutline className="text-clr-accent ml-auto size-6" />
-            </button>
-          </>
-        )}
-        {repoSearchParam !== null && (
-          <SearchInput
-            placeholder="Find repo"
-            query={repoSearchParam}
-            onChange={onChange}
-          />
-        )}
+        <div className="mx-auto flex h-full w-full max-w-[1100px] gap-6 border-clr-bg-muted lg:border-b">
+          <BackArrow />
+          {repoSearchParam === null && (
+            <>
+              <div className="flex w-full flex-col justify-center lg:flex-row lg:items-center lg:gap-4">
+                <p className="text-sm text-clr-text-muted lg:text-lg">
+                  {userLogin}
+                </p>
+                <h2 className="text-xl font-bold lg:mx-auto  lg:text-2xl">
+                  Repositories
+                </h2>
+              </div>
+              <button
+                className="ml-auto p-2 text-clr-text hover:text-clr-accent active:text-clr-accent"
+                onClick={enableSearch}
+                aria-label="Search"
+                type="button"
+              >
+                <IoSearchOutline className="stroke-4 ml-auto size-8" />
+              </button>
+            </>
+          )}
+          {repoSearchParam !== null && (
+            <SearchInput
+              placeholder="Find repo"
+              query={repoSearchParam}
+              onChange={onChange}
+            />
+          )}
+        </div>
       </Header>
       <main className="bg-clr-bg p-4">
         <ReposListWithData userLogin={userLogin} />

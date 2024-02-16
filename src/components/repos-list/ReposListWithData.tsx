@@ -10,6 +10,7 @@ import getUserLanguages from '../../utils/getUserLanguages';
 import { Modal } from '../modal';
 import { LanguagesList } from '../languages-list';
 import { LanguagesButton } from '../languages-button';
+import EmptyPageText from '../empty-page-text/EmptyPageText';
 
 type Props = {
   userLogin: string;
@@ -66,6 +67,14 @@ const ReposListWithData: FC<Props> = ({ userLogin }) => {
 
   const repos = data.search.edges;
 
+  if (repos.length === 0)
+    return (
+      <EmptyPageText
+        title="There's nothing here."
+        text="The user doesn't have any public repos."
+      />
+    );
+
   const queryFilteredRepos = repos.filter(({ node }: RepoEdgeInterface) =>
     node.name.includes(repoSearchParam),
   );
@@ -79,13 +88,19 @@ const ReposListWithData: FC<Props> = ({ userLogin }) => {
       : queryFilteredRepos;
 
   return (
-    <>
+    <div className="mx-auto max-w-[1100px]">
       <LanguagesButton
         openModal={openModal}
         selectedLanguage={selectedLanguage}
         userLanguages={userLanguages}
         allReposLoaded={allReposLoaded}
       />
+      {languageFilteredRepos.length === 0 && (
+        <EmptyPageText
+          title="Change or remove the filters"
+          text="There are no results with these filters. Please try something else."
+        />
+      )}
       <ReposList repos={languageFilteredRepos} />
       {isLoadingMore && <LoadingSpinner />}
       {isModalVisible && (
@@ -96,7 +111,7 @@ const ReposListWithData: FC<Props> = ({ userLogin }) => {
           />
         </Modal>
       )}
-    </>
+    </div>
   );
 };
 export default ReposListWithData;

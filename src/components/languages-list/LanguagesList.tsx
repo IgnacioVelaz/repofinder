@@ -10,7 +10,7 @@ const LanguagesList: FC<Props> = ({ languages, selectLanguage }) => (
     <button
       type="button"
       onClick={() => selectLanguage('')}
-      className="flex w-full"
+      className="flex w-full hover:bg-clr-bg-muted active:bg-clr-bg-muted"
     >
       <li className="flex w-full border-b border-clr-bg-muted px-10 py-6">
         All
@@ -24,7 +24,7 @@ const LanguagesList: FC<Props> = ({ languages, selectLanguage }) => (
             <button
               type="button"
               onClick={() => selectLanguage(language)}
-              className="flex w-full"
+              className="flex w-full hover:bg-clr-bg-muted active:bg-clr-bg-muted"
               key={language}
             >
               <li className="flex w-full border-b border-clr-bg-muted px-10 py-6">

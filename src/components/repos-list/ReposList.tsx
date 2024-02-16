@@ -11,15 +11,11 @@ type Props = {
   repos: RepoType[];
 };
 
-const ReposList: FC<Props> = ({ repos }) => {
-  console.log('REPOS', repos);
-
-  return (
+const ReposList: FC<Props> = ({ repos }) => (
     <ul>
       {repos.map(
         ({ node }: RepoType) => node && <RepoItem repo={node} key={node.url} />,
       )}
     </ul>
   );
-};
 export default ReposList;

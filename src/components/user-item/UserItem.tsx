@@ -9,16 +9,19 @@ type props = {
 
 const UserItem: FC<props> = ({ user, reference }) => (
   <Link to={`/user/${user.login}`}>
-    <li className="flex gap-4 p-4" ref={reference}>
+    <li
+      className="flex gap-4 border-clr-bg-muted p-4 hover:bg-clr-bg-muted active:bg-clr-bg-muted lg:border-b"
+      ref={reference}
+    >
       <img
         src={user.avatarUrl}
         alt={`${user.name} avatar`}
-        className="h-10 w-10 rounded-full"
+        className="h-10 w-10 rounded-full lg:h-20 lg:w-20"
       />
-      <div className="flex flex-col gap-2">
-        <p className="font-bold">{user.name}</p>
-        <p className="text-sm text-clr-text-muted">{user.login}</p>
-        <p>{user.bio}</p>
+      <div className="flex flex-col gap-2 truncate">
+        <p className="truncate font-bold lg:text-xl">{user.name}</p>
+        <p className="truncate text-sm text-clr-text-muted">{user.login}</p>
+        <p className="truncate">{user.bio}</p>
       </div>
     </li>
   </Link>

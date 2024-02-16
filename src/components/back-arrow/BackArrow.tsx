@@ -7,8 +7,13 @@ const BackArrow = () => {
   const navigateBack = () => navigate(-1);
 
   return (
-    <button aria-label="Go Back" type="button" onClick={navigateBack}>
-      <IoArrowBack size={20} className="text-clr-text" />
+    <button
+      aria-label="Go Back"
+      type="button"
+      onClick={navigateBack}
+      className="text-clr-text hover:text-clr-accent active:text-clr-accent"
+    >
+      <IoArrowBack size={20} />
     </button>
   );
 };

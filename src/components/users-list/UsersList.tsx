@@ -13,18 +13,20 @@ type Props = {
 };
 
 const UsersList: FC<Props> = ({ users, lastItem }) => (
-  <ul className="bg-clr-bg">
-    {users.map(
-      ({ node }: UserType, index: number) =>
-        node.login && (
-          <UserItem
-            user={node}
-            key={node.login}
-            reference={index === users.length - 1 ? lastItem : null}
-          />
-        ),
-    )}
-  </ul>
+  <div className="bg-clr-bg">
+    <ul className="mx-auto w-full max-w-[1100px]">
+      {users.map(
+        ({ node }: UserType, index: number) =>
+          node.login && (
+            <UserItem
+              user={node}
+              key={node.login}
+              reference={index === users.length - 1 ? lastItem : null}
+            />
+          ),
+      )}
+    </ul>
+  </div>
 );
 
 export default UsersList;

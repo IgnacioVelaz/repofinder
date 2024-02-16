@@ -17,10 +17,12 @@ const SearchButton: FC<Props> = ({ query, setSearchParams }) => {
       type="button"
       aria-label="Search"
       onClick={setUserSearchParams}
-      className="absolute left-0 top-full flex w-full items-center gap-2 bg-clr-bg p-6 text-left"
+      className="absolute left-0 top-full w-full bg-clr-bg text-left lg:justify-center"
     >
-      <FaUser />
-      People with &quot;{query}&quot;
+      <span className="mx-auto flex h-full max-w-[1100px]  items-center gap-2 p-6 hover:bg-clr-bg-muted active:bg-clr-bg-muted">
+        <FaUser />
+        People with &quot;{query}&quot;
+      </span>
     </button>
   );
 };

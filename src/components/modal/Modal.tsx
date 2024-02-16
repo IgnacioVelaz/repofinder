@@ -29,16 +29,20 @@ const Modal: FC<Props> = ({ title, children, closeModal }) => {
         /* eslint-enable jsx-a11y/click-events-have-key-events */
       }
       <div
-        className="fixed left-1/2 top-1/2 z-50 max-h-[60vh] w-[90%] -translate-x-1/2 
-        -translate-y-1/2 overflow-y-auto rounded-lg bg-clr-bg"
+        className="fixed left-1/2 top-1/2 z-50 max-h-[60vh] w-[90%] max-w-[1100px] 
+        -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg bg-clr-bg"
       >
         <header className="flex justify-between border-b border-clr-bg-muted p-4">
-          <p>{title}</p>
-          <button type="button" aria-label="Close modal" onClick={closeModal}>
+          <p className="font-bold lg:w-full lg:text-center">{title}</p>
+          <button
+            type="button"
+            aria-label="Close modal"
+            onClick={closeModal}
+            className="hover:text-clr-accent active:text-clr-accent"
+          >
             <IoCloseSharp size={20} />
           </button>
         </header>
-
         {children}
       </div>
     </>

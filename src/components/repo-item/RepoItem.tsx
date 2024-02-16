@@ -12,9 +12,9 @@ const RepoItem: FC<Props> = ({ repo }) => {
 
   return (
     <Link to={url} target="_blank">
-      <li className="flex flex-col gap-2 border-b border-clr-bg-muted py-4">
+      <li className="active:bg-lr-bg-muted flex flex-col gap-2 border-b border-clr-bg-muted px-2 py-4 hover:bg-clr-bg-muted lg:flex-row">
         <h3 className="font-bold">{name}</h3>
-        <p className="text-clr-text-muted">{description}</p>
+        <p className="truncate text-clr-text-muted lg:order-2">{description}</p>
         <div className="flex items-center gap-2 text-clr-text-muted">
           <FaStar className="text-yellow-500" />
           <p>{stargazerCount}</p>

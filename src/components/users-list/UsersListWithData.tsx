@@ -6,6 +6,7 @@ import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import useLoadMore from '../../hooks/useLoadMore';
 import UsersList from './UsersList';
 import UserEdgeInterface from '../../interfaces/UserEdgeInterface';
+import EmptyPageText from '../empty-page-text/EmptyPageText';
 
 type props = {
   searchQuery: string;
@@ -37,6 +38,13 @@ const UsersListWithData: FC<props> = ({ searchQuery }) => {
 
   if (loading && !isLoadingMore) return <LoadingSpinner />;
   if (error) return <p>Error: {error.message}</p>;
+  if (data.search.edges.length === 0)
+    return (
+      <EmptyPageText
+        title="Try something else"
+        text="Ups, there are no results for this page, please try something else."
+      />
+    );
 
   const users = data.search.edges;
 
