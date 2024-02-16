@@ -5,6 +5,7 @@ import { BackArrow } from '../../components/back-arrow';
 import Header from '../../components/header/Header';
 import { ReposListWithData } from '../../components/repos-list';
 import { SearchInput } from '../../components/search-input';
+import ShareURLButton from '../../components/share-url-button/ShareURLButton';
 
 const ReposPage = () => {
   const { user: userLogin } = useParams();
@@ -41,22 +42,28 @@ const ReposPage = () => {
                   Repositories
                 </h2>
               </div>
-              <button
-                className="ml-auto p-2 text-clr-text hover:text-clr-accent active:text-clr-accent"
-                onClick={enableSearch}
-                aria-label="Search"
-                type="button"
-              >
-                <IoSearchOutline className="stroke-4 ml-auto size-8" />
-              </button>
+              <div className="flex">
+                <ShareURLButton />
+                <button
+                  className="ml-auto p-2 text-clr-text hover:text-clr-accent active:text-clr-accent"
+                  onClick={enableSearch}
+                  aria-label="Search"
+                  type="button"
+                >
+                  <IoSearchOutline className="stroke-4 ml-auto size-6" />
+                </button>
+              </div>
             </>
           )}
           {repoSearchParam !== null && (
-            <SearchInput
-              placeholder="Find repo"
-              query={repoSearchParam}
-              onChange={onChange}
-            />
+            <>
+              <SearchInput
+                placeholder="Find repo"
+                query={repoSearchParam}
+                onChange={onChange}
+              />
+              <ShareURLButton />
+            </>
           )}
         </div>
       </Header>
