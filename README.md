@@ -77,12 +77,17 @@ To install and run the Repofindr project locally, follow these steps:
 ## Preview
 
 Here are some screenshots of the Repofindr app in action:
+<br>
+<img src="https://res.cloudinary.com/dsinhkkv3/image/upload/v1708057703/Screenshot_1_bre2ma.png" width="20%" height="20%">
+<img src="https://res.cloudinary.com/dsinhkkv3/image/upload/v1708059147/Screenshot_6_ybeqso.png" width="20%" height="20%">
+<img src="https://res.cloudinary.com/dsinhkkv3/image/upload/v1708057703/Screenshot_3_jn6rjm.png" width="20%" height="20%">
+<img src="https://res.cloudinary.com/dsinhkkv3/image/upload/v1708059319/Screenshot_7_xz9pi8.png" width="20%" height="20%">
+<img src="https://res.cloudinary.com/dsinhkkv3/image/upload/v1708057703/Screenshot_5_h5knsl.png" width="80%" height="80%">
 
-![Screenshot 1](https://res.cloudinary.com/dsinhkkv3/image/upload/v1708057703/Screenshot_1_bre2ma.png)
-![Screenshot 2](https://res.cloudinary.com/dsinhkkv3/image/upload/v1708057703/Screenshot_2_g1tccc.png)
-![Screenshot 3](https://res.cloudinary.com/dsinhkkv3/image/upload/v1708057703/Screenshot_3_jn6rjm.png)
-![Screenshot 4](https://res.cloudinary.com/dsinhkkv3/image/upload/v1708057703/Screenshot_5_h5knsl.png)
-![Screenshot 5](https://res.cloudinary.com/dsinhkkv3/image/upload/v1708057703/Screenshot_4_alzgk0.png)
+
+
+
+
 
 ## Let's grow together! 🌱
 
