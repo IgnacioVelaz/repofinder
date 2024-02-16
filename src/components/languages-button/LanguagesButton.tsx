@@ -21,7 +21,7 @@ const LanguagesButton: FC<Props> = ({
 
   return (
     <button
-      className="mb-6 flex items-center gap-2 rounded-full bg-clr-bg-muted px-4 py-2 text-sm"
+      className="mb-6 flex items-center gap-2 rounded-full bg-clr-bg-muted px-4 py-2 text-sm hover:bg-clr-accent active:bg-clr-accent"
       type="button"
       onClick={openModal}
     >

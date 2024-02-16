@@ -20,7 +20,7 @@ const SearchInput: FC<Props> = ({ query, onChange, placeholder }) => {
       type="search"
       placeholder={placeholder}
       className="relative mx-auto h-[80%] w-[80%] max-w-[1100px] border-b border-clr-text-muted bg-transparent 
-      px-4 caret-clr-accent focus-visible:outline-none"
+      px-4 caret-clr-accent focus-visible:border-clr-accent focus-visible:outline-none"
       ref={inputRef}
     />
   );
